@@ -1,0 +1,289 @@
+/* ==================== VARIABLES (Monochrome Palette) ==================== */
+:root[data-theme="dark"] {
+    --bg-color: #0d0d0e;
+    --container-bg: #16161a;
+    --border-color: #2a2a30;
+    --text-main: #f4f4f6;
+    --text-muted: #88888c;
+    --btn-primary: #f4f4f6;
+    --btn-primary-text: #0d0d0e;
+    --btn-secondary: #222227;
+    --btn-secondary-text: #e4e4e7;
+    --toggle-on: #e4e4e7;
+    --toggle-off: #2a2a30;
+    --hover-brightness: 85%;
+}
+
+:root[data-theme="light"] {
+    --bg-color: #f4f4f6;
+    --container-bg: #ffffff;
+    --border-color: #e4e4e7;
+    --text-main: #0d0d0e;
+    --text-muted: #71717a;
+    --btn-primary: #0d0d0e;
+    --btn-primary-text: #f4f4f6;
+    --btn-secondary: #f4f4f5;
+    --btn-secondary-text: #18181b;
+    --toggle-on: #18181b;
+    --toggle-off: #e4e4e7;
+    --hover-brightness: 115%;
+}
+
+/* ==================== BASE STYLES ==================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==================== THEME TOGGLE ==================== */
+.theme-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+}
+.theme-btn:hover {
+    background-color: var(--btn-secondary);
+}
+
+/* ==================== CLOCK CONTAINER BOX ==================== */
+.clock-container {
+    background-color: var(--container-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px 32px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Live Time Display */
+.time-display-wrapper {
+    font-size: 38px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Alarm Setup Section */
+.alarm-setup-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputs-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.input-group input, .input-group select {
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: 300;
+    width: 64px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-group select {
+    font-size: 18px;
+    width: 75px;
+    height: 38px;
+    cursor: pointer;
+    text-align-last: center;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-bottom-color: var(--text-main);
+}
+
+.input-group label {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.colon {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--border-color);
+    padding-bottom: 18px;
+}
+
+/* Action Buttons */
+.btn {
+    font-family: inherit;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--btn-primary);
+    color: var(--btn-primary-text);
+    border: none;
+}
+
+.btn-delete {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    width: auto;
+    padding: 6px 12px;
+    font-size: 11px;
+    border-radius: 4px;
+}
+.btn-delete:hover {
+    color: var(--text-main);
+    background-color: var(--btn-secondary);
+}
+
+.btn:active {
+    filter: brightness(var(--hover-brightness));
+}
+
+/* ==================== ALARMS SCROLL BOX ==================== */
+.alarms-list-box {
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.alarms-list-box::-webkit-scrollbar {
+    width: 3px;
+}
+.alarms-list-box::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 2px;
+}
+
+#active-alarms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Individual Alarm Item Structure */
+.alarm-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background-color: var(--btn-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.alarm-time-spec {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.alarm-actions-pane {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* IOS-Style Minimal Switch Customization */
+.switch-label {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.switch-label input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--toggle-off);
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--container-bg);
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--toggle-on);
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    margin-top: 32px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* Cleaner look by removing native number input layout elements */
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
