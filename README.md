@@ -26,9 +26,9 @@ A simple yet functional alarm clock web application built using HTML, CSS, and J
 
 ## 📸 Preview
 
-![Alarm Clock Light](./Alarm_Light.png)
+![Alarm Clock Light](./image/Alarm_Light.png)
 
-![Alarm Clock Dark](./Alarm_Dark.png)
+![Alarm Clock Dark](./image/Alarm_Dark.png)
 
 ---
 
